@@ -1,15 +1,71 @@
 {
   "name": "elecnan",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.ts",
-  "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "24.0.22",
+    "@types/node": "12.12.7",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "electron-is-dev": "^1.1.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.7.2"
   },
-  "author": "Satpal Tanan",
-  "license": "ISC",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "electron-builder build -ml"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "main": "main.ts",
+  "homepage": "./",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
-    "electron": "^7.1.1"
+    "concurrently": "^5.0.0",
+    "electron": "^7.1.1",
+    "electron-builder": "^22.1.0",
+    "wait-on": "^3.3.0"
+  },
+  "author": {
+    "name": "Satpal Tanan",
+    "email": "tanansatpal@gmail.com",
+    "url": "https://www.satpaltanan.com"
+  },
+  "build": {
+    "appId": "com.satpaltanan.elecnan",
+    "productName": "ElecNaN",
+    "copyright": "Copyright © 2019 Satpal Tanan",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "main.ts"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extends": null
   }
 }
