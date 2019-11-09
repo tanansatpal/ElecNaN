@@ -5,14 +5,16 @@ const isDev = require('electron-is-dev');
 
 let mainWindow;
 
+if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
+) {
+    require('electron-debug')();
+}
+
 function createWindow() {
     mainWindow = new BrowserWindow({width: 900, height: 680});
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
-    if (isDev) {
-        // Open the DevTools.
-        //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-        mainWindow.webContents.openDevTools();
-    }
     mainWindow.on('closed', () => mainWindow = null);
 }
 
